@@ -11,10 +11,8 @@ $CSS := slice
 }}
 
 {{ with .Site.Params.colorPalette }}
-
-{{ $path := printf "css/colors/%s.css" . }}
-{{ $CSS = $CSS | append (resources.Get $path)}}
-
+    {{ $path := printf "css/colors/%s.css" . }}
+    {{ $CSS = $CSS | append (resources.Get $path)}}
 {{ end }}
 
 {{ $options := dict "inlineImports" true }}
@@ -24,11 +22,11 @@ $combined := $CSS
 | resources.PostCSS $options
 }}
 
-<link rel="stylesheet" href="{{ $combined.RelPermalink }}" media="all">
 
 {{ if hugo.IsProduction }}
 {{
     $combined := $CSS | minify | fingerprint | resources.PostProcess
 }}
 {{ end }}
-<link href="{{ $combined.RelPermalink }}" rel="stylesheet" >
+<link rel="stylesheet" href="{{ $combined.RelPermalink }}" media="all"  rel="stylesheet">
+{{/* <link href="{{ $combined.RelPermalink }}" rel="stylesheet" > */}}
