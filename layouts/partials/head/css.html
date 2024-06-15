@@ -7,6 +7,7 @@ $CSS := slice
 (resources.Get "css/main.css")
 (resources.Get "css/custom.css")
 (resources.Get "css/colors/default.css")
+(resources.Get "css/style.css")
 }}
 
 {{ with .Site.Params.colorPalette }}
@@ -16,11 +17,18 @@ $CSS := slice
 
 {{ end }}
 
+{{ $options := dict "inlineImports" true }}
 {{
 $combined := $CSS
 | resources.Concat "assets/combined.css"
-| minify
-| fingerprint
+| resources.PostCSS $options
 }}
 
 <link rel="stylesheet" href="{{ $combined.RelPermalink }}" media="all">
+
+{{ if hugo.IsProduction }}
+{{
+    $combined := $CSS | minify | fingerprint | resources.PostProcess
+}}
+{{ end }}
+<link href="{{ $combined.RelPermalink }}" rel="stylesheet" >

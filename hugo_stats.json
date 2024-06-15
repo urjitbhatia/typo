@@ -1,0 +1,35 @@
+{
+  "htmlElements": {
+    "tags": [
+      "a",
+      "body",
+      "div",
+      "footer",
+      "h1",
+      "head",
+      "header",
+      "html",
+      "link",
+      "main",
+      "meta",
+      "p",
+      "script",
+      "title"
+    ],
+    "classes": [
+      "auto",
+      "bg-red-100",
+      "bg-red-300",
+      "bg-red-500",
+      "content",
+      "flex",
+      "flex-col",
+      "header",
+      "header-title",
+      "list-container",
+      "main",
+      "not-found"
+    ],
+    "ids": null
+  }
+}
